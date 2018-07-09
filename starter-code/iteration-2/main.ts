@@ -1,6 +1,30 @@
 // Add the reference to the "TodoInterface"
+import { TodoInterface } from "./todoInterface";
 
 // 1. Create a class Todo that implements the Interface created before.
+class Todo implements TodoInterface{
+    constructor(
+        public myArray : Array<string> = [],
+    ){}
+    addTask (task: string){
+        this.myArray.push(task);
+        console.log(`Task: ${task} inserted in the list`);
+        let numberOfItems: number = this.myArray.length;
+        return numberOfItems;
+        }
+    listAllTasks(){
+        this.myArray.forEach(function(oneTask){
+            console.log(oneTask);
+        })
+    }
+    deleteTask (task : string){
+            let indexArray: number = this.myArray.indexOf(task);
+            this.myArray.splice(indexArray, 1);
+            console.log(`Task ${task} removed from the list`);
+            let numberOfItems: number = this.myArray.length;
+            return numberOfItems;
+    }
+}
 
 // Execution
 let myTodos = new Todo();
